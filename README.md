@@ -1,4 +1,4 @@
-# DynamicWhereBuilder
+# DynamicWhereBuilder [![Build Status](https://travis-ci.com/mikecud/DynamicWhereBuilder.svg?branch=master)](https://travis-ci.com/mikecud/DynamicWhereBuilder)
 
 DynamicWhereBuilder is a free library that let's you build complex LINQ where queries using special sentences called "QueryParts". First you create the list of sentences, than you put them as a parameter to .Where() method.
 
