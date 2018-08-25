@@ -1,2 +1,11 @@
 language: csharp
 solution: DynamicWhereBuilder.sln
+mono: none
+dotnet: 2.1.401
+
+install:
+ - dotnet restore
+
+script:
+ - dotnet build
+ - dotnet test
