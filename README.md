@@ -86,4 +86,6 @@ That's it. You got everything you need. Now it's up to you how to use it.
 
 Dual licensed under "The Unlicense" and MIT. 
 
-"The Unlicense" is recommended for most cases, because it let's you use DynamicWhereBuilder with no restrictions under no conditions. If "The Unlicense" is for some reason not suitable for you, take it under MIT license. Check out `LICENSE.txt` file for more information.
+"The Unlicense" is recommended for most cases, because it let's you use DynamicWhereBuilder with no restrictions under no conditions. If "The Unlicense" is for some reason not suitable for you, take it under MIT license. 
+
+Check out [LICENSE.md](LICENSE.md) file for more information.

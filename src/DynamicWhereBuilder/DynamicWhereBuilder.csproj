@@ -1,14 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>mikecud</Authors>
+    <Company />
+    <Description>DynamicWhereBuilder is a free library that let's you build complex LINQ where queries using special sentences called "QueryParts".</Description>
+    <PackageLicenseUrl>https://github.com/mikecud/DynamicWhereBuilder/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/mikecud/DynamicWhereBuilder</PackageProjectUrl>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>linq</PackageTags>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Enum\**" />
-    <EmbeddedResource Remove="Enum\**" />
-    <None Remove="Enum\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Resources\GeneralResources.Designer.cs">
@@ -32,6 +34,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationErrorResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
