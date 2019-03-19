@@ -5,11 +5,12 @@
     <Authors>mikecud</Authors>
     <Company />
     <Description>DynamicWhereBuilder is a free library that let's you build complex LINQ where queries using special sentences called "QueryParts".</Description>
-    <PackageLicenseUrl>https://github.com/mikecud/DynamicWhereBuilder/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageLicense>https://github.com/mikecud/DynamicWhereBuilder/blob/master/LICENSE.md</PackageLicense>
     <PackageProjectUrl>https://github.com/mikecud/DynamicWhereBuilder</PackageProjectUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>linq</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
