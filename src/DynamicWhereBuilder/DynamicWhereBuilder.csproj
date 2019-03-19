@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <Authors>mikecud</Authors>
     <Company />
     <Description>DynamicWhereBuilder is a free library that let's you build complex LINQ where queries using special sentences called "QueryParts".</Description>
