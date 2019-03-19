@@ -1,6 +1,8 @@
 ﻿using DynamicWhereBuilder.Models.QueryPart;
 using DynamicWhereBuilder.Models.Sequence;
+using DynamicWhereBuilder.Resources;
 using DynamicWhereBuilder.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,10 +22,17 @@ namespace DynamicWhereBuilder.Services.Implementations
 
                 if (queryPart.InitialParenthesis.HasValue)
                 {
-                    if (queryPart.InitialParenthesis.Value == Parenthesis.Open)
-                        sequence.Add(new ParenthesisOpenSymbol(i));
-                    else if (queryPart.InitialParenthesis.Value == Parenthesis.Close)
-                        sequence.Add(new ParenthesisCloseSymbol(i));
+                    switch (queryPart.InitialParenthesis.Value)
+                    {
+                        case Parenthesis.Open:
+                            sequence.Add(new ParenthesisOpenSymbol(i));
+                            break;
+                        case Parenthesis.Close:
+                            sequence.Add(new ParenthesisCloseSymbol(i));
+                            break;
+                        default: // should not happen
+                            throw new NotImplementedException(string.Format(GeneralResources.Exception_UnexpectedTokenDuringAnalysisOfQueryParts, queryPart.InitialParenthesis.Value));
+                    }
                 }
 
                 #endregion
@@ -39,10 +48,17 @@ namespace DynamicWhereBuilder.Services.Implementations
 
                 if (queryPart.EndingParenthesis.HasValue)
                 {
-                    if (queryPart.EndingParenthesis.Value == Parenthesis.Open)
-                        sequence.Add(new ParenthesisOpenSymbol(i));
-                    else if (queryPart.EndingParenthesis.Value == Parenthesis.Close)
-                        sequence.Add(new ParenthesisCloseSymbol(i));
+                    switch (queryPart.EndingParenthesis.Value)
+                    {
+                        case Parenthesis.Open:
+                            sequence.Add(new ParenthesisOpenSymbol(i));
+                            break;
+                        case Parenthesis.Close:
+                            sequence.Add(new ParenthesisCloseSymbol(i));
+                            break;
+                        default: // should not happen
+                            throw new NotImplementedException(string.Format(GeneralResources.Exception_UnexpectedTokenDuringAnalysisOfQueryParts, queryPart.EndingParenthesis.Value));
+                    }
                 }
 
                 #endregion
@@ -51,10 +67,17 @@ namespace DynamicWhereBuilder.Services.Implementations
 
                 if (queryPart.LogicalOperator.HasValue)
                 {
-                    if (queryPart.LogicalOperator.Value == LogicalOperator.And)
-                        sequence.Add(new LogicalOperatorAndSymbol(i));
-                    else if (queryPart.LogicalOperator.Value == LogicalOperator.Or)
-                        sequence.Add(new LogicalOperatorOrSymbol(i));
+                    switch (queryPart.LogicalOperator.Value)
+                    {
+                        case LogicalOperator.And:
+                            sequence.Add(new LogicalOperatorAndSymbol(i));
+                            break;
+                        case LogicalOperator.Or:
+                            sequence.Add(new LogicalOperatorOrSymbol(i));
+                            break;
+                        default:
+                            throw new NotImplementedException(string.Format(GeneralResources.Exception_UnexpectedTokenDuringAnalysisOfQueryParts, queryPart.LogicalOperator.Value));
+                    }
                 }
 
                 #endregion

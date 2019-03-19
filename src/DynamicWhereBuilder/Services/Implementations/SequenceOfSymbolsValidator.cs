@@ -30,6 +30,8 @@ namespace DynamicWhereBuilder.Services.Implementations
                     case IParenthesisSymbol _:
                         this.ValidateSymbol(sequenceSymbol as IParenthesisSymbol, nextSymbol, i, ref parenthesisCount);
                         break;
+                    default:
+                        throw new NotImplementedException(string.Format(GeneralResources.Exception_UnexpectedTokenDuringAnalysisOfQueryParts, sequenceOfSymbols.GetType()));
                 }
             }
 
@@ -71,34 +73,33 @@ namespace DynamicWhereBuilder.Services.Implementations
 
         public void ValidateSymbol(IParenthesisSymbol sequenceSymbol, ISequenceSymbol nextSymbol, int i, ref int parenthesisCount)
         {
-            if (sequenceSymbol is ParenthesisOpenSymbol)
+            switch (sequenceSymbol)
             {
-                parenthesisCount++;
+                case ParenthesisOpenSymbol _:
+                    parenthesisCount++;
 
-                if (!this.allowedSymbolsAfterParenthesisOpen.Contains(nextSymbol?.GetType()))
-                    throw new ParseException(
-                        ValidationErrorResources.SequenceOfSymbols_AfterOpeningParenthesisThereMustBeExpressionOrOpeningParenthesis,
-                        (sequenceSymbol as ISequenceSymbol).QueryPartIndex);
-            }
-            else if (sequenceSymbol is ParenthesisCloseSymbol)
-            {
-                if (i == 0)
-                    throw new ParseException(
-                        ValidationErrorResources.SequenceOfSymbols_QueryCannotBeginWithClosingParenthesis,
-                        (sequenceSymbol as ISequenceSymbol).QueryPartIndex);
+                    if (!this.allowedSymbolsAfterParenthesisOpen.Contains(nextSymbol?.GetType()))
+                        throw new ParseException(
+                            ValidationErrorResources.SequenceOfSymbols_AfterOpeningParenthesisThereMustBeExpressionOrOpeningParenthesis,
+                            (sequenceSymbol as ISequenceSymbol).QueryPartIndex);
+                    break;
+                case ParenthesisCloseSymbol _:
+                    if (i == 0)
+                        throw new ParseException(
+                            ValidationErrorResources.SequenceOfSymbols_QueryCannotBeginWithClosingParenthesis,
+                            (sequenceSymbol as ISequenceSymbol).QueryPartIndex);
 
-                parenthesisCount--;
+                    parenthesisCount--;
 
-                if (!this.allowedSymbolsAfterParenthesisClose.Contains(nextSymbol?.GetType()))
+                    if (!this.allowedSymbolsAfterParenthesisClose.Contains(nextSymbol?.GetType()))
+                        throw new ParseException(
+                            ValidationErrorResources.SequenceOfSymbols_AfterClosingParenthesisThereMustBeLogicalOperatorOrClosingParenthesis,
+                            (sequenceSymbol as ISequenceSymbol).QueryPartIndex);
+                    break;
+                default: // should not happen
                     throw new ParseException(
-                        ValidationErrorResources.SequenceOfSymbols_AfterClosingParenthesisThereMustBeLogicalOperatorOrClosingParenthesis,
+                        string.Format(ValidationErrorResources.SequenceOfSymbols_UnknownParenthesisSymbolX, sequenceSymbol.GetType()),
                         (sequenceSymbol as ISequenceSymbol).QueryPartIndex);
-            }
-            else
-            {
-                throw new ParseException(
-                    string.Format(ValidationErrorResources.SequenceOfSymbols_UnknownParenthesisSymbolX, sequenceSymbol.GetType()),
-                    (sequenceSymbol as ISequenceSymbol).QueryPartIndex);
             }
         }
     }

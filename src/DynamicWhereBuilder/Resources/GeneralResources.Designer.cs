@@ -61,6 +61,15 @@ namespace DynamicWhereBuilder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unexpected token &quot;{0}&quot; during analysis of query parts..
+        /// </summary>
+        public static string Exception_UnexpectedTokenDuringAnalysisOfQueryParts {
+            get {
+                return ResourceManager.GetString("Exception_UnexpectedTokenDuringAnalysisOfQueryParts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unexpected token &quot;{0}&quot; during analysis of sequence of symbols..
         /// </summary>
         public static string Exception_UnexpectedTokenDuringAnalysisOfSequenceOfSymbols {
