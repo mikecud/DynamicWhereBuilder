@@ -1,12 +1,11 @@
 language: csharp
 solution: DynamicWhereBuilder.sln
 mono: none
-dotnet: 2.1.401
+dotnet: 2.2.105
 
 install:
  - dotnet restore
 
 script:
- - dotnet build
  - dotnet test tests/DynamicWhereBuilder.Tests/DynamicWhereBuilder.Tests.csproj
  - dotnet test tests/DynamicWhereBuilder.IntegrationTests/DynamicWhereBuilder.IntegrationTests.csproj
