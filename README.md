@@ -7,11 +7,13 @@ Works with any IEnumerable and supports popular ORMs like Entity Framework.
 ## Installation
 
 DynamicWhereBuilder is available on NuGet. Just search for "DynamicWhereBuilder" in NuGet Package Manager or use command:
+
 ```
 Install-Package DynamicWhereBuilder
 ```
 
 You can also use `dotnet` CLI:
+
 ```
 dotnet add package DynamicWhereBuilder
 ```
@@ -19,12 +21,14 @@ dotnet add package DynamicWhereBuilder
 ## Usage
 
 First things first, you are going to need this usings:
+
 ```csharp
 using DynamicWhereBuilder;
 using DynamicWhereBuilder.Models.QueryPart;
 ```
 
 Now let's prepare some class to test it!
+
 ```csharp
 public class ExampleClass
 {
@@ -40,6 +44,7 @@ public class ExampleClass
 ```
 
 And make a List using it:
+
 ```csharp
 var list = new List<ExampleClass>()
 {
@@ -51,12 +56,14 @@ var list = new List<ExampleClass>()
 ```
 
 So, how do you create queries using DynamicWhereBuilder? Let's say we would like achieve the same results as these two queries:
+
 ```csharp
 var result1Linq = list.Where(x => x.Id == 1);
 var result2Linq = list.Where(x => x.Id == 1 || (x.Id == 2 && x.Value == "valid"));
 ```
 
 We should create two lists of QueryParts, use them as .Where() param and test whether result is the same when we used traditional LINQ.
+
 ```csharp
 var result1QueryParts = new List<QueryPart<ExampleClass>>(); // x =>
 result1QueryParts.Add(new QueryPart<ExampleClass>(null, x => x.Id == 1, null, null)); // x.Id == 1
@@ -74,6 +81,7 @@ Assert.Equal(result2Linq, result2DynamicWhereBuilder); // success!
 ```
 
 As you can see QueryPart takes 4 parameters:
+
 - `initialParenthesis` - provide `Parenthesis.Open` for `"("` or `Parenthesis.Close` for `")"` or null if you want to skip it
 - `expression` - LINQ query or null to skip it
 - `closingParenthesis` - provide `Parenthesis.Open` for `"("` or `Parenthesis.Close` for `")"` or null to skip it
@@ -84,8 +92,8 @@ That's it. You got everything you need. Now it's up to you how to use it.
 
 ## License
 
-Dual licensed under "The Unlicense" and MIT. 
+Dual licensed under ["The Unlicense"](LICENSE.md) and ["MIT"](LICENSE.MIT.md) .
 
 "The Unlicense" is recommended for most cases, because it let's you use DynamicWhereBuilder with no restrictions under no conditions. If "The Unlicense" is for some reason not suitable for you, take it under MIT license. 
 
-Check out [LICENSE.md](LICENSE.md) file for more information.
+In any case, feel free to use this piece of software for any purposes (including commercial use).
